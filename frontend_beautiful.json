@@ -1,0 +1,54 @@
+{
+  "type": "app",
+  "title": "🎵 Harmonic Flow",
+  "description": "Analizează melodiile YouTube cu tehnologie AI avansată",
+  "theme": {
+    "primary_color": "#8B5CF6",
+    "secondary_color": "#EC4899",
+    "accent_color": "#F59E0B",
+    "background_color": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+  },
+  "inputs": [
+    {
+      "name": "youtube_link",
+      "type": "text",
+      "label": "🔮 Link YouTube",
+      "placeholder": "https://www.youtube.com/watch?v=EXEMPLU",
+      "required": true,
+      "validation": {
+        "pattern": "https://www\\.youtube\\.com/watch\\?v=[\\w-]+",
+        "message": "🌟 Te rog introdu un link YouTube valid"
+      }
+    }
+  ],
+  "actions": [
+    {
+      "name": "🚀 Analizează Melodia",
+      "type": "api_call",
+      "method": "POST",
+      "url": "https://youtube-karaoke-api-production-xxxx.up.railway.app/analyze/",
+      "body": {
+        "url": "{{youtube_link}}"
+      },
+      "loading_text": "🔮 Analizez melodia cu AI...",
+      "on_success": {
+        "type": "show_text",
+        "text": "🎵 **{{title}}**\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n📊 **📈 Informații Melodie:**\n🎯 **Tempo:** {{tempo}} BPM\n🎼 **Cheie:** {{key}}\n⏱️ **Durată:** {{duration}} secunde\n🎚️ **Dificultate:** {{difficulty}}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎸 **🎼 Progresie Acorduri:**\n{{#each chord_progression}}🎵 {{this}}\n{{/each}}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎸 **🎵 Acorduri Detectate:**\n{{#each chords}}⏰ **{{timp}}s:** {{acord}} ({{confidence}} confidență)\n{{/each}}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🥁 **🥁 Beat-uri:**\n{{#each beats}}🎵 Beat la {{this}}s\n{{/each}}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n✨ **Funcționalități disponibile:**\n🎤 Karaoke Mode\n🥁 Neural Percussion\n📥 Export MIDI\n💾 Save Analysis"
+      },
+      "on_error": {
+        "type": "show_text",
+        "text": "❌ **Eroare la Analiză**\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nNu am putut analiza melodia. Verifică:\n\n🔍 **Link-ul este valid?**\n🔍 **Videoclipul este disponibil public?**\n🔍 **Conectiunea la internet este stabilă?**\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🔄 **Încearcă din nou în câteva secunde.**"
+      }
+    }
+  ],
+  "help": {
+    "title": "🌟 Harmonic Flow Guide",
+    "content": [
+      "1. 🔮 Introdu un link valid de YouTube",
+      "2. 🚀 Apasă 'Analizează Melodia'", 
+      "3. ⏳ Așteaptă rezultatele (30-60s)",
+      "4. 🎵 Explorează datele armonice",
+      "5. 🎤 Lansează modul karaoke imersiv"
+    ]
+  }
+} 
