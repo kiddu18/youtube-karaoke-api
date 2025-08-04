@@ -10,7 +10,7 @@ import uvicorn
 from typing import List, Dict, Optional
 import json
 from scipy.signal import find_peaks
-from sklearn.cluster import KMeans
+# from sklearn.cluster import KMeans  # Not used in final implementation
 
 app = FastAPI(title="YouTube Karaoke API", version="1.0.0")
 
