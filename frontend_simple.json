@@ -1,0 +1,53 @@
+{
+  "type": "app",
+  "title": "YouTube Karaoke - Acorduri & Tempo",
+  "description": "Introdu un link YouTube și primești acordurile, tempo-ul și percuția sincronizată pentru karaoke.",
+  "theme": {
+    "primary_color": "#1db954",
+    "secondary_color": "#191414",
+    "background_color": "#f8f9fa"
+  },
+  "inputs": [
+    {
+      "name": "youtube_link",
+      "type": "text",
+      "label": "Link YouTube",
+      "placeholder": "https://www.youtube.com/watch?v=EXEMPLU",
+      "required": true,
+      "validation": {
+        "pattern": "https://www\\.youtube\\.com/watch\\?v=[\\w-]+",
+        "message": "Te rog introdu un link YouTube valid"
+      }
+    }
+  ],
+  "actions": [
+    {
+      "name": "Analizează Melodia",
+      "type": "api_call",
+      "method": "POST",
+      "url": "https://numeleproiectului.up.railway.app/analyze/",
+      "body": {
+        "url": "{{youtube_link}}"
+      },
+      "loading_text": "Analizez melodia...",
+      "on_success": {
+        "type": "show_text",
+        "text": "🎵 **{{title}}**\n\n📊 **Informații Melodie:**\n🎯 Tempo: {{tempo}} BPM\n🎼 Cheie: {{key}}\n⏱️ Durată: {{duration}} secunde\n🎚️ Dificultate: {{difficulty}}\n\n🎸 **Progresie Acorduri:**\n{{#each chord_progression}}• {{this}}\n{{/each}}\n\n🎸 **Acorduri Detectate:**\n{{#each chords}}• **{{timp}}s:** {{acord}} ({{confidence}} confidență)\n{{/each}}\n\n🥁 **Beat-uri:**\n{{#each beats}}• Beat la {{this}}s\n{{/each}}"
+      },
+      "on_error": {
+        "type": "show_text",
+        "text": "❌ **Eroare la Analiză**\n\nNu am putut analiza melodia. Verifică:\n• Link-ul este valid?\n• Videoclipul este disponibil public?\n• Încearcă din nou în câteva secunde."
+      }
+    }
+  ],
+  "help": {
+    "title": "Cum să folosești aplicația",
+    "content": [
+      "1. Introdu un link valid de YouTube",
+      "2. Apasă 'Analizeză Melodia'",
+      "3. Așteaptă rezultatele (30-60 secunde)",
+      "4. Vezi acordurile, tempo-ul și dificultatea",
+      "5. Folosește progresia pentru exersare"
+    ]
+  }
+} 

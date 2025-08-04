@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+yt-dlp
+librosa
+soundfile
+numpy
+scipy
+madmom
+mir_eval
+pydub
+scikit-learn
+pandas
+matplotlib
+seaborn
+midiutil

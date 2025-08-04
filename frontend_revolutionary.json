@@ -1,0 +1,496 @@
+{
+  "type": "app",
+  "title": "🎵 Harmonic Flow",
+  "description": "Immersive audio analysis through liquid glass technology",
+  "theme": {
+    "primary_color": "#8B5CF6",
+    "secondary_color": "#EC4899", 
+    "accent_color": "#F59E0B",
+    "background_color": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+    "glass_color": "rgba(255, 255, 255, 0.1)",
+    "glow_color": "rgba(139, 92, 246, 0.3)"
+  },
+  "custom_css": {
+    "liquid_glass": {
+      "background": "linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%)",
+      "backdrop_filter": "blur(20px)",
+      "border": "1px solid rgba(255, 255, 255, 0.2)",
+      "border_radius": "20px",
+      "box_shadow": "0 8px 32px rgba(31, 38, 135, 0.37)",
+      "transition": "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "holographic_glow": {
+      "background": "linear-gradient(45deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2), rgba(245, 158, 11, 0.2))",
+      "animation": "holographicPulse 3s ease-in-out infinite",
+      "border_radius": "15px",
+      "backdrop_filter": "blur(15px)"
+    },
+    "floating_text": {
+      "font_family": "'Orbitron', 'Arial', sans-serif",
+      "text_shadow": "0 0 20px rgba(139, 92, 246, 0.5)",
+      "animation": "floatingText 2s ease-in-out infinite"
+    },
+    "neural_network_bg": {
+      "background": "radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 70%)",
+      "animation": "neuralPulse 4s ease-in-out infinite"
+    },
+    "voice_wave": {
+      "background": "linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), transparent)",
+      "animation": "voiceWave 1.5s ease-in-out infinite",
+      "height": "3px",
+      "border_radius": "2px"
+    },
+    "ai_suggestion": {
+      "background": "linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%)",
+      "border": "1px solid rgba(34, 197, 94, 0.3)",
+      "border_radius": "12px",
+      "padding": "10px 15px",
+      "margin": "5px 0",
+      "animation": "aiGlow 2s ease-in-out infinite"
+    }
+  },
+  "animations": {
+    "holographicPulse": "@keyframes holographicPulse { 0%, 100% { opacity: 0.7; transform: scale(1); } 50% { opacity: 1; transform: scale(1.02); } }",
+    "floatingText": "@keyframes floatingText { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-5px); } }",
+    "neuralPulse": "@keyframes neuralPulse { 0% { transform: scale(1); opacity: 0.3; } 50% { transform: scale(1.1); opacity: 0.6; } 100% { transform: scale(1); opacity: 0.3; } }",
+    "liquidFlow": "@keyframes liquidFlow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }",
+    "voiceWave": "@keyframes voiceWave { 0%, 100% { transform: scaleX(0.3); opacity: 0.5; } 50% { transform: scaleX(1); opacity: 1; } }",
+    "aiGlow": "@keyframes aiGlow { 0%, 100% { box-shadow: 0 0 10px rgba(34, 197, 94, 0.3); } 50% { box-shadow: 0 0 20px rgba(34, 197, 94, 0.6); } }",
+    "morphingShape": "@keyframes morphingShape { 0% { border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; } 25% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; } 50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; } 75% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; } 100% { border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; } }"
+  },
+  "inputs": [
+    {
+      "name": "youtube_link",
+      "type": "text",
+      "label": "🔮 Enter Harmonic Frequency",
+      "placeholder": "https://www.youtube.com/watch?v=EXEMPLU",
+      "required": true,
+      "validation": {
+        "pattern": "https://www\\.youtube\\.com/watch\\?v=[\\w-]+",
+        "message": "🌟 Please enter a valid YouTube frequency"
+      },
+      "styling": {
+        "class": "liquid-glass-input",
+        "background": "rgba(255, 255, 255, 0.05)",
+        "border": "2px solid rgba(139, 92, 246, 0.3)",
+        "border_radius": "15px",
+        "backdrop_filter": "blur(10px)",
+        "color": "#FFFFFF",
+        "font_family": "'Orbitron', monospace",
+        "text_shadow": "0 0 10px rgba(139, 92, 246, 0.5)",
+        "transition": "all 0.3s ease",
+        "focus_effect": {
+          "border_color": "rgba(236, 72, 153, 0.8)",
+          "box_shadow": "0 0 30px rgba(236, 72, 153, 0.4)",
+          "transform": "scale(1.02)"
+        }
+      },
+      "ai_suggestions": {
+        "enabled": true,
+        "suggestions": [
+          "🎵 Popular songs for analysis",
+          "🎸 Guitar tutorial videos", 
+          "🎤 Karaoke performances",
+          "🎹 Piano covers"
+        ],
+        "styling": {
+          "class": "ai-suggestion",
+          "background": "rgba(34, 197, 94, 0.1)",
+          "border": "1px solid rgba(34, 197, 94, 0.3)",
+          "border_radius": "8px",
+          "padding": "8px 12px",
+          "margin": "5px 0",
+          "font_size": "12px",
+          "color": "#FFFFFF"
+        }
+      }
+    }
+  ],
+  "voice_control": {
+    "enabled": true,
+    "commands": {
+      "analyze": "Analyze this song",
+      "karaoke": "Start karaoke mode", 
+      "percussion": "Generate percussion",
+      "export": "Export MIDI file",
+      "help": "Show help guide"
+    },
+    "styling": {
+      "class": "voice-control-indicator",
+      "background": "rgba(139, 92, 246, 0.2)",
+      "border_radius": "50%",
+      "width": "60px",
+      "height": "60px",
+      "animation": "voicePulse 2s ease-in-out infinite"
+    }
+  },
+  "actions": [
+    {
+      "name": "🚀 Initiate Harmonic Analysis",
+      "type": "api_call",
+      "method": "POST",
+      "url": "https://numeleproiectului.up.railway.app/analyze/",
+      "body": {
+        "url": "{{youtube_link}}"
+      },
+      "loading_text": "🔮 Decoding harmonic frequencies...",
+      "loading_animation": {
+        "type": "neural_network",
+        "particles": 50,
+        "color": "rgba(139, 92, 246, 0.8)",
+        "speed": "medium"
+      },
+      "styling": {
+        "class": "holographic-button",
+        "background": "linear-gradient(45deg, rgba(139, 92, 246, 0.8), rgba(236, 72, 153, 0.8))",
+        "border": "none",
+        "border_radius": "20px",
+        "color": "#FFFFFF",
+        "font_family": "'Orbitron', monospace",
+        "font_weight": "bold",
+        "text_shadow": "0 0 15px rgba(255, 255, 255, 0.8)",
+        "box_shadow": "0 8px 32px rgba(139, 92, 246, 0.4)",
+        "transition": "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+        "hover_effect": {
+          "transform": "translateY(-3px) scale(1.05)",
+          "box_shadow": "0 15px 40px rgba(139, 92, 246, 0.6)",
+          "background": "linear-gradient(45deg, rgba(236, 72, 153, 0.9), rgba(245, 158, 11, 0.9))"
+        }
+      },
+      "on_success": {
+        "type": "show_holographic_card",
+        "template": "harmonic_results_template",
+        "animation": {
+          "entrance": "slideInFromTop",
+          "duration": "0.8s",
+          "easing": "cubic-bezier(0.4, 0, 0.2, 1)"
+        }
+      },
+      "on_error": {
+        "type": "show_error_hologram",
+        "template": "error_hologram_template"
+      }
+    },
+    {
+      "name": "🎤 Voice Control",
+      "type": "voice_command",
+      "styling": {
+        "class": "voice-button holographic-glow",
+        "background": "linear-gradient(45deg, rgba(34, 197, 94, 0.8), rgba(59, 130, 246, 0.8))",
+        "border_radius": "50%",
+        "width": "60px",
+        "height": "60px",
+        "color": "#FFFFFF",
+        "font_size": "24px",
+        "animation": "voicePulse 2s ease-in-out infinite"
+      }
+    }
+  ],
+  "templates": {
+    "harmonic_results_template": {
+      "type": "holographic_card",
+      "title": "🎵 {{title}}",
+      "subtitle": "Harmonic Frequency Analysis Complete",
+      "styling": {
+        "class": "liquid-glass-card holographic-glow",
+        "background": "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%)",
+        "backdrop_filter": "blur(25px)",
+        "border": "2px solid rgba(255, 255, 255, 0.2)",
+        "border_radius": "25px",
+        "box_shadow": "0 20px 60px rgba(31, 38, 135, 0.4)",
+        "animation": "cardFloat 3s ease-in-out infinite"
+      },
+      "content": [
+        {
+          "type": "holographic_section",
+          "title": "🔮 Harmonic Data Matrix",
+          "icon": "⚡",
+          "styling": {
+            "class": "neural-section",
+            "background": "rgba(139, 92, 246, 0.1)",
+            "border_radius": "15px",
+            "padding": "20px",
+            "margin": "15px 0"
+          },
+          "content": [
+            "🎯 **Tempo Frequency:** {{tempo}} BPM",
+            "🎼 **Key Signature:** {{key}}",
+            "⏱️ **Duration:** {{duration}} seconds",
+            "🎚️ **Complexity Level:** {{difficulty}}"
+          ]
+        },
+        {
+          "type": "holographic_section", 
+          "title": "🎸 Chord Progression Matrix",
+          "icon": "🌟",
+          "styling": {
+            "class": "progression-section",
+            "background": "rgba(236, 72, 153, 0.1)",
+            "border_radius": "15px",
+            "padding": "20px",
+            "margin": "15px 0"
+          },
+          "content": [
+            "{{#each chord_progression}}",
+            "• {{this}}",
+            "{{/each}}"
+          ]
+        },
+        {
+          "type": "holographic_section",
+          "title": "🎵 Detected Harmonics",
+          "icon": "🔍",
+          "styling": {
+            "class": "chords-section",
+            "background": "rgba(245, 158, 11, 0.1)",
+            "border_radius": "15px",
+            "padding": "20px",
+            "margin": "15px 0"
+          },
+          "content": [
+            "{{#each chords}}",
+            "• **{{timp}}s:** {{acord}} ({{confidence}} confidence)",
+            "{{/each}}"
+          ]
+        },
+        {
+          "type": "holographic_section",
+          "title": "🥁 Beat Synchronization",
+          "icon": "⚡",
+          "styling": {
+            "class": "beats-section",
+            "background": "rgba(34, 197, 94, 0.1)",
+            "border_radius": "15px",
+            "padding": "20px",
+            "margin": "15px 0"
+          },
+          "content": [
+            "{{#each beats}}",
+            "• Beat at {{this}}s",
+            "{{/each}}"
+          ]
+        },
+        {
+          "type": "visualization_section",
+          "title": "📊 Real-time Waveform",
+          "icon": "🌊",
+          "styling": {
+            "class": "waveform-section",
+            "background": "rgba(59, 130, 246, 0.1)",
+            "border_radius": "15px",
+            "padding": "20px",
+            "margin": "15px 0"
+          },
+          "content": [
+            "🎵 **Audio Visualization**",
+            "📈 **Frequency Spectrum**",
+            "🎚️ **Volume Levels**",
+            "⏱️ **Time Domain**"
+          ],
+          "visualization": {
+            "type": "waveform",
+            "data": "{{audio_data}}",
+            "color": "rgba(59, 130, 246, 0.8)",
+            "animation": "waveformFlow 2s ease-in-out infinite"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "name": "🎤 Launch Karaoke Mode",
+          "type": "holographic_action",
+          "styling": {
+            "class": "holographic-button-secondary",
+            "background": "linear-gradient(45deg, rgba(34, 197, 94, 0.8), rgba(59, 130, 246, 0.8))",
+            "border_radius": "15px",
+            "color": "#FFFFFF",
+            "font_family": "'Orbitron', monospace",
+            "transition": "all 0.3s ease"
+          }
+        },
+        {
+          "name": "🥁 Generate Neural Percussion",
+          "type": "holographic_action",
+          "styling": {
+            "class": "holographic-button-secondary",
+            "background": "linear-gradient(45deg, rgba(245, 158, 11, 0.8), rgba(236, 72, 153, 0.8))",
+            "border_radius": "15px",
+            "color": "#FFFFFF",
+            "font_family": "'Orbitron', monospace",
+            "transition": "all 0.3s ease"
+          }
+        },
+        {
+          "name": "📥 Export MIDI",
+          "type": "download_action",
+          "styling": {
+            "class": "holographic-button-secondary",
+            "background": "linear-gradient(45deg, rgba(139, 92, 246, 0.8), rgba(236, 72, 153, 0.8))",
+            "border_radius": "15px",
+            "color": "#FFFFFF",
+            "font_family": "'Orbitron', monospace",
+            "transition": "all 0.3s ease"
+          }
+        },
+        {
+          "name": "💾 Save Analysis",
+          "type": "save_action",
+          "styling": {
+            "class": "holographic-button-secondary",
+            "background": "linear-gradient(45deg, rgba(16, 185, 129, 0.8), rgba(59, 130, 246, 0.8))",
+            "border_radius": "15px",
+            "color": "#FFFFFF",
+            "font_family": "'Orbitron', monospace",
+            "transition": "all 0.3s ease"
+          }
+        }
+      ]
+    },
+    "error_hologram_template": {
+      "type": "holographic_error",
+      "title": "❌ Harmonic Interference Detected",
+      "styling": {
+        "class": "error-hologram",
+        "background": "linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 127, 0.2) 100%)",
+        "border": "2px solid rgba(239, 68, 68, 0.5)",
+        "border_radius": "20px",
+        "backdrop_filter": "blur(20px)"
+      },
+      "content": [
+        "🔍 **Analysis Failed**",
+        "",
+        "Please verify:",
+        "• Valid YouTube frequency?",
+        "• Public video availability?",
+        "• Network connection stable?",
+        "",
+        "🔄 Retry in a few moments..."
+      ]
+    }
+  },
+  "background_effects": {
+    "type": "neural_network",
+    "particles": {
+      "count": 100,
+      "color": "rgba(139, 92, 246, 0.3)",
+      "size": "2px",
+      "speed": "slow",
+      "connection_distance": 150
+    },
+    "gradient_animation": {
+      "type": "liquid_flow",
+      "colors": ["rgba(139, 92, 246, 0.1)", "rgba(236, 72, 153, 0.1)", "rgba(245, 158, 11, 0.1)"],
+      "duration": "10s",
+      "easing": "ease-in-out"
+    },
+    "morphing_shapes": {
+      "enabled": true,
+      "count": 5,
+      "colors": ["rgba(139, 92, 246, 0.1)", "rgba(236, 72, 153, 0.1)", "rgba(245, 158, 11, 0.1)"],
+      "animation": "morphingShape 8s ease-in-out infinite"
+    }
+  },
+  "micro_interactions": {
+    "hover_effects": {
+      "scale": 1.05,
+      "glow_intensity": "increased",
+      "transition_duration": "0.3s"
+    },
+    "click_effects": {
+      "ripple": true,
+      "sound": "glass_tap",
+      "haptic_feedback": true
+    },
+    "scroll_effects": {
+      "parallax": true,
+      "depth": "3D",
+      "smoothness": "high"
+    },
+    "voice_effects": {
+      "wave_animation": true,
+      "frequency_visualization": true,
+      "voice_command_feedback": true
+    }
+  },
+  "ai_features": {
+    "smart_suggestions": {
+      "enabled": true,
+      "based_on": ["user_history", "popular_songs", "similar_genres"],
+      "styling": {
+        "class": "ai-suggestion-card",
+        "background": "rgba(34, 197, 94, 0.1)",
+        "border": "1px solid rgba(34, 197, 94, 0.3)",
+        "border_radius": "12px",
+        "padding": "15px",
+        "margin": "10px 0"
+      }
+    },
+    "auto_completion": {
+      "enabled": true,
+      "suggestions_count": 5,
+      "styling": {
+        "class": "auto-complete-dropdown",
+        "background": "rgba(255, 255, 255, 0.1)",
+        "backdrop_filter": "blur(10px)",
+        "border_radius": "8px",
+        "border": "1px solid rgba(139, 92, 246, 0.3)"
+      }
+    }
+  },
+  "accessibility": {
+    "high_contrast_mode": true,
+    "reduced_motion": true,
+    "voice_control": true,
+    "screen_reader_optimized": true,
+    "keyboard_navigation": true,
+    "color_blind_friendly": true,
+    "font_size_adjustable": true
+  },
+  "performance": {
+    "lazy_loading": true,
+    "component_rendering": "optimized",
+    "animation_throttling": true,
+    "memory_optimization": true,
+    "gpu_acceleration": true,
+    "web_workers": true
+  },
+  "help": {
+    "title": "🌟 Harmonic Flow Guide",
+    "content": [
+      "1. 🔮 Enter a YouTube frequency",
+      "2. 🚀 Initiate harmonic analysis", 
+      "3. ⏳ Wait for neural processing (30-60s)",
+      "4. 🎵 Explore harmonic data matrix",
+      "5. 🎤 Launch immersive karaoke mode",
+      "6. 🎤 Use voice commands for hands-free control",
+      "7. 📊 View real-time audio visualizations",
+      "8. 💾 Save your favorite analyses"
+    ],
+    "styling": {
+      "class": "help-hologram",
+      "background": "rgba(255, 255, 255, 0.05)",
+      "border_radius": "15px",
+      "backdrop_filter": "blur(10px)"
+    }
+  },
+  "advanced_features": {
+    "real_time_visualization": {
+      "waveform": true,
+      "spectrum_analyzer": true,
+      "beat_detection": true,
+      "chord_highlighting": true
+    },
+    "collaborative_features": {
+      "share_analysis": true,
+      "duet_mode": true,
+      "group_karaoke": true,
+      "playlist_creation": true
+    },
+    "ai_enhancements": {
+      "style_transfer": true,
+      "tempo_adjustment": true,
+      "key_transposition": true,
+      "difficulty_scaling": true
+    }
+  }
+} 

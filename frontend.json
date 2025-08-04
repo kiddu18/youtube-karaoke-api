@@ -1,0 +1,233 @@
+{
+  "type": "app",
+  "title": "YouTube Karaoke - Acorduri & Percuție",
+  "description": "Introdu un link YouTube și primești acordurile, tempo-ul și percuția sincronizată pentru karaoke.",
+  "theme": {
+    "primary_color": "#1db954",
+    "secondary_color": "#191414",
+    "background_color": "#f8f9fa"
+  },
+  "inputs": [
+    {
+      "name": "youtube_link",
+      "type": "text",
+      "label": "Link YouTube",
+      "placeholder": "https://www.youtube.com/watch?v=EXEMPLU",
+      "required": true,
+      "validation": {
+        "pattern": "https://www\\.youtube\\.com/watch\\?v=[\\w-]+",
+        "message": "Te rog introdu un link YouTube valid"
+      }
+    }
+  ],
+  "actions": [
+    {
+      "name": "Analizează Melodia",
+      "type": "api_call",
+      "method": "POST",
+      "url": "https://numeleproiectului.up.railway.app/analyze/",
+      "body": {
+        "url": "{{youtube_link}}"
+      },
+      "loading_text": "Analizez melodia...",
+      "on_success": {
+        "type": "show_results",
+        "template": "results_template"
+      },
+      "on_error": {
+        "type": "show_error",
+        "title": "Eroare la Analiză",
+        "message": "Nu am putut analiza melodia. Verifică linkul și încearcă din nou."
+      }
+    }
+  ],
+  "templates": {
+    "results_template": {
+      "type": "card",
+      "title": "🎵 {{title}}",
+      "content": [
+        {
+          "type": "section",
+          "title": "📊 Informații Melodie",
+          "content": [
+            "🎯 **Tempo:** {{tempo}} BPM",
+            "🎼 **Cheie:** {{key}}",
+            "⏱️ **Durată:** {{duration}} secunde",
+            "🎚️ **Dificultate:** {{difficulty}}"
+          ]
+        },
+        {
+          "type": "section",
+          "title": "🎸 Progresie Acorduri",
+          "content": [
+            "{{#each chord_progression}}",
+            "• {{this}}",
+            "{{/each}}"
+          ]
+        },
+        {
+          "type": "section",
+          "title": "🎸 Acorduri Detectate",
+          "content": [
+            "{{#each chords}}",
+            "• **{{timp}}s:** {{acord}} ({{confidence}} confidență)",
+            "{{/each}}"
+          ]
+        },
+        {
+          "type": "section",
+          "title": "🥁 Beat-uri",
+          "content": [
+            "{{#each beats}}",
+            "• Beat la {{this}}s",
+            "{{/each}}"
+          ]
+        }
+      ],
+      "actions": [
+        {
+          "name": "Pornește Karaoke",
+          "type": "show_karaoke_player",
+          "data": {
+            "youtube_url": "{{youtube_link}}",
+            "chords": "{{chords}}",
+            "tempo": "{{tempo}}",
+            "beats": "{{beats}}"
+          }
+        },
+        {
+          "name": "Generează Percuție Rock",
+          "type": "api_call",
+          "method": "POST",
+          "url": "https://numeleproiectului.up.railway.app/generate-drum-pattern/",
+          "body": {
+            "tempo": "{{tempo}}",
+            "style": "rock"
+          },
+          "on_success": {
+            "type": "show_drum_pattern",
+            "template": "drum_pattern_template"
+          }
+        },
+        {
+          "name": "Generează Percuție Pop",
+          "type": "api_call",
+          "method": "POST",
+          "url": "https://numeleproiectului.up.railway.app/generate-drum-pattern/",
+          "body": {
+            "tempo": "{{tempo}}",
+            "style": "pop"
+          },
+          "on_success": {
+            "type": "show_drum_pattern",
+            "template": "drum_pattern_template"
+          }
+        },
+        {
+          "name": "Generează Percuție Jazz",
+          "type": "api_call",
+          "method": "POST",
+          "url": "https://numeleproiectului.up.railway.app/generate-drum-pattern/",
+          "body": {
+            "tempo": "{{tempo}}",
+            "style": "jazz"
+          },
+          "on_success": {
+            "type": "show_drum_pattern",
+            "template": "drum_pattern_template"
+          }
+        }
+      ]
+    },
+    "drum_pattern_template": {
+      "type": "card",
+      "title": "🥁 Pattern Percuție - {{style}}",
+      "content": [
+        {
+          "type": "section",
+          "title": "📊 Informații Pattern",
+          "content": [
+            "🎯 **Tempo:** {{tempo}} BPM",
+            "🎵 **Stil:** {{style}}",
+            "⏱️ **Durată măsură:** {{4 * 60 / tempo}} secunde"
+          ]
+        },
+        {
+          "type": "section",
+          "title": "🥁 Pattern-ul",
+          "content": [
+            "{{#each pattern}}",
+            "• **{{time}}s:** {{drum}} ({{velocity}} intensitate)",
+            "{{/each}}"
+          ]
+        }
+      ],
+      "actions": [
+        {
+          "name": "Pornește Percuția",
+          "type": "start_drum_beat",
+          "data": {
+            "pattern": "{{pattern}}",
+            "tempo": "{{tempo}}",
+            "style": "{{style}}"
+          }
+        },
+        {
+          "name": "Descarcă MIDI",
+          "type": "download_midi",
+          "data": {
+            "pattern": "{{pattern}}",
+            "tempo": "{{tempo}}"
+          }
+        }
+      ]
+    }
+  },
+  "components": {
+    "karaoke_player": {
+      "type": "custom",
+      "html": "<div id='karaoke-player' class='karaoke-container'></div>",
+      "css": ".karaoke-container { background: #191414; color: white; padding: 20px; border-radius: 10px; }",
+      "javascript": "initKaraokePlayer(data);"
+    },
+    "drum_beat": {
+      "type": "custom", 
+      "html": "<div id='drum-machine' class='drum-container'></div>",
+      "css": ".drum-container { background: #2c2c2c; padding: 15px; border-radius: 8px; }",
+      "javascript": "initDrumMachine(data);"
+    },
+    "difficulty_badge": {
+      "type": "custom",
+      "html": "<span class='difficulty-badge difficulty-{{difficulty}}'>{{difficulty}}</span>",
+      "css": ".difficulty-badge { padding: 4px 8px; border-radius: 4px; font-weight: bold; } .difficulty-Ușor { background: #28a745; } .difficulty-Mediu { background: #ffc107; color: #000; } .difficulty-Dificil { background: #dc3545; }"
+    }
+  },
+  "settings": {
+    "auto_play": false,
+    "show_chords": true,
+    "show_beats": true,
+    "drum_volume": 0.7,
+    "chord_highlighting": true,
+    "difficulty_colors": true,
+    "midi_export": true
+  },
+  "help": {
+    "title": "Cum să folosești aplicația",
+    "content": [
+      "1. Introdu un link valid de YouTube",
+      "2. Apasă 'Analizează Melodia'",
+      "3. Așteaptă rezultatele (poate dura 30-60 secunde)",
+      "4. Vezi dificultatea și progresia de acorduri",
+      "5. Generează percuție în stilul dorit",
+      "6. Folosește player-ul karaoke pentru a cânta"
+    ]
+  },
+  "features": {
+    "advanced_chord_detection": true,
+    "drum_pattern_generation": true,
+    "difficulty_calculation": true,
+    "chord_progression_analysis": true,
+    "midi_export": true,
+    "multiple_drum_styles": true
+  }
+} 
